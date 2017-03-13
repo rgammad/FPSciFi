@@ -7,12 +7,13 @@ public class PlayerController : MonoBehaviour
 
     public float sprintSpeed = 15.0f;
     public float runSpeed = 10.0f;
-    public float walkSpeed = 5.0f;
 
+    private float currSpeed = 0f;
     private static Rigidbody rigid;
+    private float horizontalX = 0f;
+    private float horizontalZ = 0f;
     private enum MoveState
     {
-        Walking,
         Running,
         Sprinting
     };
@@ -28,37 +29,35 @@ public class PlayerController : MonoBehaviour
         _Move();
     }
 
+    void OnGUI()
+    {
+        GUI.Label(new Rect(10, 10, 100, 20), "Move State: " + currSpeed);
+    }
+
     private void _Move()
     {
-        float horizontalX = Input.GetAxis("Horizontal");
-        float horizontalZ = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(horizontalX, 0, horizontalZ);
+        horizontalX = Input.GetAxis("Horizontal");
+        horizontalZ = Input.GetAxis("Vertical");
+        float speed = 0f;
         _MoveStateCheck();
         switch (moveState)
         {
-            case MoveState.Walking:
-                movement *= walkSpeed;
-                break;
             case MoveState.Running:
-                movement *= runSpeed;
+                speed = runSpeed;
                 break;
             case MoveState.Sprinting:
-                movement *= sprintSpeed;
+                speed = sprintSpeed;
                 break;
         }
-        rigid.velocity = new Vector3(0, rigid.velocity.y,0);
-        rigid.velocity += movement;
+        currSpeed = speed;
+        Vector3 movement = new Vector3(speed * horizontalX, 0, speed * horizontalZ);
+        rigid.transform.Translate(movement * Time.deltaTime);
     }
+
     private void _MoveStateCheck()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
+        if (Input.GetKey(KeyCode.LeftShift) && horizontalZ > 0)
             moveState = MoveState.Sprinting;
-        }
-        else if (Input.GetKeyDown(KeyCode.CapsLock))
-        {
-            moveState = MoveState.Walking;
-        }
         else
             moveState = MoveState.Running;
     }
