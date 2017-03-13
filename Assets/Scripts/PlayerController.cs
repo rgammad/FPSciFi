@@ -29,10 +29,6 @@ public class PlayerController : MonoBehaviour
         _Move();
     }
 
-    void OnGUI()
-    {
-        GUI.Label(new Rect(10, 10, 100, 20), "Move State: " + currSpeed);
-    }
 
     private void _Move()
     {
