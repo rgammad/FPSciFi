@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour {
 
     public float waitTime = 1f;
+    public bool isDying = false;
     private bool isRunning = false;
     private float speed = 10f;
 
@@ -19,18 +20,27 @@ public class EnemyAI : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
         transform.position = transform.position;
         speed = Random.Range(10, 20);
+        StartCoroutine(_Spawning());
     }
 
     private void Update()
     {
-        Transform playerTarget = GameObject.FindGameObjectWithTag("Player").transform;  
-        agent.destination = playerTarget.position;
-        agent.speed = speed;
-        agent.acceleration = speed * 2;
-        agent.Resume();
-        isRunning = true;
-        anim.SetBool("isRunning", isRunning);
-
+        if (!isDying)
+        {
+            Transform playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
+            agent.destination = playerTarget.position;
+            agent.speed = speed;
+            agent.acceleration = speed * 2;
+            agent.Resume();
+            isRunning = true;
+            anim.SetBool("isRunning", isRunning);
+        }
     }
 
+    private IEnumerator _Spawning()
+    {
+        anim.SetBool("isSpawning", true);
+        agent.Stop();
+        yield return new WaitForSeconds(4f);
+    }
 }

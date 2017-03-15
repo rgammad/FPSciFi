@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4f9dc61421de1554e94320bdd6e74b22
-timeCreated: 1489386233
+timeCreated: 1489605279
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -72,6 +72,30 @@ ModelImporter:
     100128: QuickRigCharacter_Spine
     100130: QuickRigCharacter_Spine1
     100132: QuickRigCharacter_Spine2
+    100134: Head
+    100136: Hips
+    100138: LeftArm
+    100140: LeftFoot
+    100142: LeftForeArm
+    100144: LeftHand
+    100146: LeftLeg
+    100148: LeftShoulder
+    100150: LeftToeBase
+    100152: LeftUpLeg
+    100154: Neck
+    100156: QuickRigCharacter_Guides
+    100158: Reference
+    100160: RightArm
+    100162: RightFoot
+    100164: RightForeArm
+    100166: RightHand
+    100168: RightLeg
+    100170: RightShoulder
+    100172: RightToeBase
+    100174: RightUpLeg
+    100176: Spine
+    100178: Spine1
+    100180: Spine2
     400000: Body1
     400002: //RootNode
     400004: group1
@@ -139,6 +163,30 @@ ModelImporter:
     400128: QuickRigCharacter_Spine
     400130: QuickRigCharacter_Spine1
     400132: QuickRigCharacter_Spine2
+    400134: Head
+    400136: Hips
+    400138: LeftArm
+    400140: LeftFoot
+    400142: LeftForeArm
+    400144: LeftHand
+    400146: LeftLeg
+    400148: LeftShoulder
+    400150: LeftToeBase
+    400152: LeftUpLeg
+    400154: Neck
+    400156: QuickRigCharacter_Guides
+    400158: Reference
+    400160: RightArm
+    400162: RightFoot
+    400164: RightForeArm
+    400166: RightHand
+    400168: RightLeg
+    400170: RightShoulder
+    400172: RightToeBase
+    400174: RightUpLeg
+    400176: Spine
+    400178: Spine1
+    400180: Spine2
     4300000: Body1
     7400000: Take 001
     9500000: //RootNode
