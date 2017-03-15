@@ -23,8 +23,8 @@ public class MouseLook : MonoBehaviour
 
     void Start()
     {
-        if (transform.GetComponent<Rigidbody>())
-            transform.GetComponent<Rigidbody>().freezeRotation = true;
+        if (GetComponent<Rigidbody>())
+            GetComponent<Rigidbody>().freezeRotation = true;
         originalRotation = transform.localRotation;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -71,4 +71,6 @@ public class MouseLook : MonoBehaviour
             transform.localRotation = originalRotation * yQuaternion;
         }
     }
+
+
 }
