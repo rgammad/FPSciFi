@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Health))]
 public class Death : MonoBehaviour {
@@ -26,18 +27,29 @@ public class Death : MonoBehaviour {
         //screenshake
         if (transform.root.gameObject.CompareTag("Enemy"))
         {
-            StartCoroutine(Dying());
+            StartCoroutine(EnemyDeath());
+        }
+        if (transform.root.gameObject.CompareTag("Player"))
+        {
+            StartCoroutine(PlayerDeath());
         }
         //Destroy(transform.root.gameObject);
         health.onDeath -= Health_onDeath;
     }
 
-    private IEnumerator Dying()
+    private IEnumerator EnemyDeath()
     {
         anim.SetBool("isDying", true);
         transform.root.GetComponent<UnityEngine.AI.NavMeshAgent>().Stop();
         yield return new WaitForSeconds(1f);
         Destroy(transform.root.gameObject);
+    }
+
+    private IEnumerator PlayerDeath()
+    {
+        anim.SetBool("isDying", true);
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
 

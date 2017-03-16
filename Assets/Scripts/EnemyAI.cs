@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour {
 
     public float waitTime = 1f;
+    public float damage = 25f;
+    [HideInInspector]
     public bool isDying = false;
     private bool isRunning = false;
     private float speed = 10f;
@@ -42,5 +44,15 @@ public class EnemyAI : MonoBehaviour {
         anim.SetBool("isSpawning", true);
         agent.Stop();
         yield return new WaitForSeconds(4f);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Health targetHealth = collision.transform.root.GetComponent<Health>();
+            if (targetHealth != null)
+                targetHealth.Damage(damage);
+        }
     }
 }

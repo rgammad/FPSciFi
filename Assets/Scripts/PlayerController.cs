@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private static Rigidbody rigid;
     private float horizontalX = 0f;
     private float horizontalZ = 0f;
+
+    Health health;
     private enum MoveState
     {
         Running,
@@ -22,13 +24,17 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigid = transform.root.GetComponentInChildren<Rigidbody>();
+        health = transform.root.GetComponentInChildren<Health>();
     }
 
     void Update()
     {
         _Move();
     }
-
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(10,20,100, 20), "Health: " + health.healthPercent * 100 + "%");
+    }
 
     private void _Move()
     {
